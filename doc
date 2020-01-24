@@ -1,0 +1,132 @@
+data.php
+{"connecte":false,"action":false,"feedback":"Entrez connexion(login,passe) (eg 'web2','web2')"} 
+
+Connexion ************************************************************************************************
+
+data.php?action=connexion&login=web2&passe=web2
+{"connecte":true,"action":"connexion","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]),  majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)"} 
+
+data.php?action=logout
+{"connecte":false,"action":"logout","feedback":"Entrez login,passe (eg 'user','user')"} 
+
+Utilisateurs ************************************************************************************************
+
+data.php?action=setUser&login=user1&passe=user1&initiales=U1
+{"connecte":true,"action":"setUser","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","idUser":"3"} 
+
+data.php?action=getUsers
+{"connecte":true,"action":"getUsers","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","users":[{"id":"1","pseudo":"tom","passe":"web2","initiales":"TB"},{"id":"2","pseudo":"","passe":"user1","initiales":"U1"},{"id":"3","pseudo":"user1","passe":"user1","initiales":"U1"}]} 
+
+Notifications ************************************************************************************************
+
+data.php?action=setNotification&description=une%20notification
+{"connecte":true,"action":"setNotification","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","idNotification":"1"} 
+
+data.php?action=getNotifications
+{"connecte":true,"action":"getNotifications","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","notifications":[{"id":"1","idAuteur":"1","description":"une notification","dateAction":"2016-11-16 14:34:08"}]} 
+
+data.php?action=delNotification&idNotification=1
+{"connecte":true,"action":"delNotification","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)"} 
+
+data.php?action=getNotifications
+{"connecte":true,"action":"getNotifications","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","notifications":[]} 
+
+Boards ************************************************************************************************
+
+data.php?action=setBoard&label=premier%20Board
+{"connecte":true,"action":"setBoard","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","idBoard":"1"} 
+
+data.php?action=getBoards
+{"connecte":true,"action":"getBoards","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","boards":[{"id":"1","label":"premier Board"}]} 
+
+data.php?action=majBoard&idBoard=1&label=premier%20board%20renomm%C3%A9
+{"connecte":true,"action":"majBoard","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)"} 
+
+data.php?action=getBoards
+{"connecte":true,"action":"getBoards","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","boards":[{"id":"1","label":"premier board renomm\u00e9"}]} 
+
+Colonnes ************************************************************************************************
+
+data.php?action=getColonnes&idBoard=1
+{"connecte":true,"action":"getColonnes","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","colonnes":[{"idBoard":"1","nomCol1":"A Faire","nomCol2":"En cours","nomCol3":"Fait"}]} 
+
+data.php?action=majColonne&idBoard=1&numColonne=2&label=Doing
+{"connecte":true,"action":"majColonne","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)"} 
+
+data.php?action=getColonnes&idBoard=1
+{"connecte":true,"action":"getColonnes","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","colonnes":[{"idBoard":"1","nomCol1":"A Faire","nomCol2":"Doing","nomCol3":"Fait"}]} 
+
+
+Post its ************************************************************************************************
+
+data.php?action=setPostIt&idBoard=1&label=premier%20post-it&numColonne=2
+{"connecte":true,"action":"setPostIt","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","idPostIt":"9"} 
+
+data.php?action=setPostIt&idBoard=1&label=second%20post-it
+{"connecte":true,"action":"setPostIt","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","idPostIt":"10"} 
+
+data.php?action=setPostIt&idBoard=1&label=3e%20post-it&numColonne=3&avancement=90
+{"connecte":true,"action":"setPostIt","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","idPostIt":"11"} 
+
+data.php?action=getPostIts&idBoard=1&numColonne=2
+{"connecte":true,"action":"getPostIts","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","postIts":[{"id":"9","numColonne":"2","idBoard":"1","label":"premier post-it","avancement":"0"}]} 
+
+data.php?action=getPostIts&idBoard=1
+{"connecte":true,"action":"getPostIts","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","postIts":[{"id":"9","numColonne":"2","idBoard":"1","label":"premier post-it","avancement":"0"},{"id":"10","numColonne":"1","idBoard":"1","label":"second post-it","avancement":"0"},{"id":"11","numColonne":"3","idBoard":"1","label":"3e post-it","avancement":"90"}]} 
+
+data.php?action=majPostIt&idPostIt=10&avancement=50&numColonne=2
+{"connecte":true,"action":"majPostIt","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)"} 
+
+
+data.php?action=getPostIts&idBoard=1
+{"connecte":true,"action":"getPostIts","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","postIts":[{"id":"9","numColonne":"2","idBoard":"1","label":"premier post-it","avancement":"0"},{"id":"10","numColonne":"2","idBoard":"1","label":"second post-it","avancement":"50"},{"id":"11","numColonne":"3","idBoard":"1","label":"3e post-it","avancement":"90"}]} 
+
+data.php?action=majPostIt&idPostIt=9&avancement=20
+{"connecte":true,"action":"majPostIt","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)"} 
+
+data.php?action=getPostIts&idBoard=1&numColonne=2
+{"connecte":true,"action":"getPostIts","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","postIts":[{"id":"9","numColonne":"2","idBoard":"1","label":"premier post-it","avancement":"20"},{"id":"10","numColonne":"2","idBoard":"1","label":"second post-it","avancement":"50"}]} 
+
+Marqueurs ************************************************************************************************
+
+data.php?action=setMarqueur&idPostIt=9&type=couleur&valeur=red
+{"connecte":true,"action":"setMarqueur","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","idMarqueur":"1"} 
+
+data.php?action=setMarqueur&idPostIt=9&type=IdMembre&valeur=1
+{"connecte":true,"action":"setMarqueur","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","idMarqueur":"2"} 
+
+data.php?action=setMarqueur&idPostIt=9&type=IdMembre&valeur=3
+{"connecte":true,"action":"setMarqueur","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","idMarqueur":"3"} 
+
+data.php?action=getMarqueurs&idPostIt=9
+SELECT * FROM marqueurs WHERE idPostIt='9'{"connecte":true,"action":"getMarqueurs","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","marqueurs":[{"id":"1","type":"couleur","valeur":"red","idPostIt":"9"},{"id":"2","type":"IdMembre","valeur":"1","idPostIt":"9"},{"id":"3","type":"IdMembre","valeur":"3","idPostIt":"9"}]} 
+
+data.php?action=delMarqueur&idMarqueur=3
+{"connecte":true,"action":"delMarqueur","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)"} 
+
+data.php?action=getMarqueurs&idPostIt=9
+SELECT * FROM marqueurs WHERE idPostIt='9'{"connecte":true,"action":"getMarqueurs","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur)","marqueurs":[{"id":"1","type":"couleur","valeur":"red","idPostIt":"9"},{"id":"2","type":"IdMembre","valeur":"1","idPostIt":"9"}]} 
+
+
+Commentaires ************************************************************************************************
+data.php?action=setCommentaire&idPostIt=9&contenu=Un%20commentaire
+{"connecte":true,"action":"setCommentaire","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur),setCommentaire(idPostIt,contenu),getCommentaires(idPostIt),delCommentaire(idPostIt)","idCommentaire":"1"} 
+
+data.php?action=setCommentaire&idPostIt=9&contenu=Un%20autre
+{"connecte":true,"action":"setCommentaire","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur),setCommentaire(idPostIt,contenu),getCommentaires(idPostIt),delCommentaire(idPostIt)","idCommentaire":"2"} 
+
+data.php?action=getCommentaires&idPostIt=9
+{"connecte":true,"action":"getCommentaires","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur),setCommentaire(idPostIt,contenu),getCommentaires(idPostIt),delCommentaire(idPostIt)","commentaires":[{"id":"1","contenu":"Un commentaire","idAuteur":"1","idPostit":"9"},{"id":"2","contenu":"Un autre","idAuteur":"1","idPostit":"9"}]} 
+
+data.php?action=delCommentaire&idCommentaire=2
+{"connecte":true,"action":"delCommentaire","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur),setCommentaire(idPostIt,contenu),getCommentaires(idPostIt),delCommentaire(idPostIt)"} 
+
+data.php?action=getCommentaires&idPostIt=9
+{"connecte":true,"action":"getCommentaires","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur),setCommentaire(idPostIt,contenu),getCommentaires(idPostIt),delCommentaire(idPostIt)","commentaires":[{"id":"1","contenu":"Un commentaire","idAuteur":"1","idPostit":"9"}]} 
+
+
+************************************************************************************************
+
+data.php?action=getNotifications
+{"connecte":true,"action":"getNotifications","feedback":"entrez action: logout, setUser(login,passe,initiales), getUsers,setNotification(description), getNotifications, delNotification(idNotification), setBoard(label),getBoards,majBoard(idBoard,label), getColonnes(idBoard), majColonne(idBoard,numColonne,label), setPostIt(idBoard,[label],[avancement],[numColonne]), getPostIts(idBoard,[numColonne]), majPostIt(idPostIt,[label],[avancement],[numColonne]), delPostIt(idPostIt),setMarqueur(idPostIt,type,valeur), getMarqueurs(idPostIt),delMarqueur(idMarqueur),setCommentaire(idPostIt,contenu),getCommentaires(idPostIt),delCommentaire(idPostIt)","notifications":[{"pseudo":"tom","initiales":"TB","description":"Cr?ation de l'utilisateur user1","dateAction":"2016-11-16 16:46:43"},{"pseudo":"tom","initiales":"TB","description":"une notification","dateAction":"2016-11-16 16:51:00"},{"pseudo":"tom","initiales":"TB","description":"Creation du Board 'premier Board'","dateAction":"2016-11-16 16:51:18"},{"pseudo":"tom","initiales":"TB","description":"Creation du PostIt 'premier post-it'","dateAction":"2016-11-16 16:51:43"},{"pseudo":"tom","initiales":"TB","description":"Mise a jour du PostIt ''","dateAction":"2016-11-16 16:51:55"},{"pseudo":"tom","initiales":"TB","description":"Creation d'un marqueur dans le post-it '9'","dateAction":"2016-11-16 16:52:09"},{"pseudo":"tom","initiales":"TB","description":"Commentaire du post-it '9' : 'contenu' ","dateAction":"2016-11-16 16:52:26"}]} 
+

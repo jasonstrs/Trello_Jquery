@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+
+<script src="jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
+  <script src="./jquery-ui-1.12.1/jquery-ui.js"></script>
+
+<style type="text/css">
+
+	#connexion {
+		border: 1px solid black;
+		margin: 5px;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	#back {
+		text-align: center;
+		border: 1px solid black;
+		margin: 5px;
+	}
+
+	#back:hover {
+		background-color: lightgrey;
+		cursor: pointer; 
+		}
+
+	.ligne {
+		display: block;
+	}
+
+	.titre {
+		background-color: lightgrey;
+		width: 100%;
+		border: 1px solid black;
+		height: 30px;
+		position: relative;
+
+	}
+
+	.image {
+		height: 28px;
+		padding-right: 10px;
+		cursor: pointer;
+	}
+
+	
+
+	.initiales {
+		padding-right: 10px;
+	}
+
+	.pseudo {
+		padding-right: 10px;
+	}
+
+	#banniere {
+		height: 30px;
+		display: flex;
+		justify-content: end ;
+	}
+
+	.init{
+		cursor: pointer;
+		border: 1px solid black;
+		background-color: yellow;
+		height: 100px;
+		width: 150px;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		margin: 15px;
+	}
+
+	.board {
+		cursor: pointer;
+		border: 1px solid black;
+		background-color: lightblue;
+		height: 100px;
+		width: 150px;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		margin: 15px;
+	}
+
+	#notification {
+		border: 1px solid black;
+		position: absolute;
+		right: 0px;
+		top: 30px;
+		width: 250px;
+		background-color: white;
+		height: 500px;
+		text-align: center;
+		overflow: auto;
+	}
+
+	.notif {
+		border: 1px solid black;
+	}
+
+	.supprimer {
+		cursor: pointer;
+		height: 20px;
+		margin-left: 10px;
+		margin-bottom: 2px;
+	}
+
+	.top {
+		margin: 5px;
+		border: 1px solid black;
+		cursor: pointer;
+		height: 30px;
+		text-align: center;
+		width: 100%;
+		margin-left: 0px;
+	}
+
+	.top:hover {
+		background-color: lightgrey;
+	}
+
+	.listeBoard {
+		border: 1px solid black;
+		width: 30%;
+		height: 600px;
+	}
+
+	#colonne {
+		display: flex;
+		justify-content: space-around;
+		width: 100%;
+		margin-top: 20px;
+	}
+
+	h5 {
+		text-align: center;
+		cursor: pointer;
+		margin: 0;
+		padding: 5px;
+	}
+	h5:hover{
+		background-color: lightgrey;
+		border-bottom: 1px solid black;
+	}
+
+	.post{
+		text-align: center;
+	}
+
+	.post p {
+		margin: 0;
+	}
+
+	.post:hover {
+		border: 1px solid black;
+		cursor: pointer;
+		background-color: lightgrey;
+	}
+
+	#col1,#col2,#col3 {
+		overflow: auto;
+	}
+
+	.ajouter {
+		text-align: center;
+		cursor: pointer;
+		border-top: 1px solid black;
+		border-bottom: 1px solid black;
+		padding: 5px;
+
+	}
+
+	.ajouter:hover {
+		background-color: lightgrey;
+	}
+
+
+
+</style>
+
+<script type="text/javascript">
+
+	var selectDefaut = $("<select><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></select>");
+
+	$(document).on("click","input[value='Se connecter']",function(){
+		console.log("Connexion ...");
+
+		var login = $(this).prev().prev().val();
+		var passe = $(this).prev().val();
+
+		console.log(login + " + " + passe);
+
+
+		$.ajax({
+				type: "GET",
+				url: "data.php",
+				data: {"action":"connexion","login":"web2","passe":"web2"},
+				success: function(oRep){
+				console.log(oRep);
+				console.log("true");
+				if (oRep.connecte){
+					console.log("CONNECTE !");
+
+					var initiales = oRep.initiales;
+					var pseudo = oRep.pseudo;
+
+					$("#connexion").remove();
+
+					accueil(pseudo,initiales);
+					listerBoard();
+					boardInit();
+					
+				}
+				
+			},
+			dataType: "json"
+			});
+	});
+
+
+
+
+	function changerLabel(idBoard){
+
+		$("#changeLabel").remove(); // sii elle existe déjà
+		$(".corps").append("<div id='changeLabel'></div>");
+		$("#changeLabel").append("Label : <input type='text' id='labelChgmt' placeholder='Saisir le nouveau label'>");
+		console.log($("#labelChgmt"));
+
+		var popup = $("#changeLabel").dialog({
+				autoOpen: true,
+				dialogClass: 'dialogstyleperso',
+				title:"Changer Label",
+				close: function(){ $('#changeLabel').remove();},
+				buttons: [
+			            {
+			                text: "Changer",
+			                "class": 'ui-state-information',
+			                click: function () {
+		                   
+		                  	 var label = $("#labelChgmt").val();
+
+		                  	 console.log(idBoard);
+		                  	 console.log(label);
+
+		                  	 $.ajax({
+									type: "GET",
+									url: "data.php",
+									data: {"action":"majBoard","idBoard":idBoard,"label":label},
+									success: function(oRep){
+									console.log(oRep);
+									$(".top").html(label);
+
+								},
+								dataType: "json"
+								});
+		                  	 $(this).dialog("close");
+		                  	 
+			                }
+
+			            }
+
+			        ]
+			});
+	}
+
+
+
+	function changerNomColonne(idBoard,numeroCol,referenceTitre){
+		var contenu = $(referenceTitre).html();
+		console.log(contenu);
+		$(referenceTitre).replaceWith($("<div><input type='text' value='"+ contenu+"'><p> Cliquez sur entree</p></div>").keydown(function(e){
+			console.log($(this));
+			var newContenu = $(this).children(":first").val();
+			console.log(idBoard);
+			console.log(numeroCol);
+			console.log(newContenu);
+
+			if (e.keyCode == 13){
+			 $.ajax({
+					type: "GET",
+					url: "data.php",
+					data: {"action":"majColonne","idBoard":idBoard,"numColonne":numeroCol,"label":newContenu},
+					success: function(oRep){
+					console.log(oRep);
+					remplirColonne(idBoard);
+					insererPost(idBoard,1); // on remplit la colonne 1 avec ses posts
+					insererPost(idBoard,2);
+					insererPost(idBoard,3);
+
+					},
+					dataType: "json"
+					});
+			}
+
+		}));
+	}
+
+	function ajouterPost(numeroCol,idBoard){
+		console.log(numeroCol);
+		console.log(idBoard);
+		console.log("Ajouter un post");
+
+		$("#nouveauPost").remove(); // si un popup existe déjà
+
+		var post = $("<div id='nouveauPost'>Label : <input id='setLabel' type='text'> Avancement : </div>");
+		
+		$(".corps").append(post);
+
+		$("#nouveauPost").append(selectDefaut);
+		var popup = $("#nouveauPost").dialog({
+				autoOpen: true,
+				dialogClass: 'dialogstyleperso',
+				title:"Creer un post",
+				close: function(){ $('#nouveauPost').remove();},
+				buttons: [
+			            {
+			                text: "Creer",
+			                "class": 'ui-state-information',
+			                click: function () {
+		                   
+		                  	 var label = $("#setLabel").val();
+		                  	 var avancement = $("select option:selected").html();
+		                  	 console.log(idBoard);
+		                  	 console.log(numeroCol);
+		                  	 console.log(label);
+		                  	 console.log(avancement);
+		                 
+		                  	 $.ajax({
+									type: "GET",
+									url: "data.php",
+									data: {"action":"setPostIt","idBoard":idBoard,"label":label,"numColonne":numeroCol,"avancement":avancement},
+									success: function(oRep){
+									console.log(oRep);
+									createNotif();
+									$("#col" +numeroCol +" div").remove(); // on vide tout la div qui contient les posts
+									insererAjout(numeroCol,idBoard); // on remet le clic ajout
+									insererPost(idBoard,numeroCol); // on remplit la colonne numeroCol avec ses posts
+									
+								},
+								dataType: "json"
+							});
+		                  	 $(this).dialog("close");
+		                  	 
+			                }
+
+			            }
+
+			        ]
+			});
+
+		createNotif();
+	}
+
+	function insererAjout(numeroCol,idBoard){
+		$("#col"+numeroCol).append($("<div class='ajouter'>Cliquez ici pour ajouter un post</div>").click(function(){
+				ajouterPost(numeroCol,idBoard);
+			}));
+	}
+
+
+	function remplirColonne(id){
+		 $.ajax({
+				type: "GET",
+				url: "data.php",
+				data: {"action":"getColonnes","idBoard":id},
+				success: function(oRep){
+				console.log(oRep);
+				$("#col1").html($("<h5 id='1'>" +oRep.colonnes[0].nomCol1 +"</h5>").click(function(){
+					changerNomColonne(id,1,$(this));
+				}));
+
+
+				$("#col2").html($("<h5 id='2'>" +oRep.colonnes[0].nomCol2 +"</h5>").click(function(){
+					changerNomColonne(id,2,$(this));
+				}));
+
+
+
+				$("#col3").html($("<h5 id='3'>" +oRep.colonnes[0].nomCol3 +"</h5>").click(function(){
+					changerNomColonne(id,3,$(this));
+				}));
+
+				insererAjout(1,id);
+				insererAjout(2,id);
+				insererAjout(3,id);
+
+
+
+
+				},
+				dataType: "json"
+			});
+	}
+
+	function afficherPopupModification(ref,idBoard,numeroCol){
+		console.log(ref);
+		console.log($(ref).data("id"));
+		var avancement = $("span",ref).html();
+		var idPost = $(ref).data("id");
+		var contenu = $("p:first",ref).html();
+
+		$("#modifierPost").remove(); // s'il y a déjà un post !
+
+		$(".corps").append("<div id='modifierPost'></div>");
+		$("#modifierPost").html("Avancement : </div>");
+		$("#modifierPost").append(selectDefaut);
+		$("select option[value='" +avancement +"']").attr("selected",true); // on recupère l'option correspondant au selected et on ajoute l'attribut
+		console.log($("#modifierPost"));
+		console.log($("select",ref));
+
+		var popup = $("#modifierPost").dialog({
+				autoOpen: true,
+				dialogClass: 'dialogstyleperso',
+				title:"Modifier Post : "+contenu,
+				close: function(){$("select option[value='" +avancement +"']").attr("selected",false); $('#modifierPost').remove();},
+// $("select option[value='" +avancement +"']").attr("selected",false); : on ajoute cela pour remettre l'option du select en non selected pour cliquer sur un autre post.
+				buttons: [
+			            {
+			                text: "Modifier",
+			                "class": 'ui-state-information',
+			                click: function () {
+		                   
+								var avancement = $("select option:selected").html();
+
+								console.log(avancement);
+								console.log("**");		              
+							     $.ajax({
+								type: "GET",
+								url: "data.php",
+								data: {"action":"majPostIt","idPostIt":idPost,"avancement":avancement},
+								success: function(oRep){
+								console.log(oRep);
+								$("#col" +numeroCol +" div").remove(); // on vide tout la div qui contient les posts
+								insererAjout(numeroCol,idBoard); // on remet le clic ajout
+								insererPost(idBoard,numeroCol); // on remplit la colonne 'numeroCol' avec ses posts
+
+								},
+								dataType: "json"
+								});
+		                  	 $(this).dialog("close");
+		                  	 
+			                }
+
+			            }
+
+			        ]
+			});
+
+	}
+
+	function insererPost(idBoard,numeroCol){
+		$.ajax({
+			type: "GET",
+			url: "data.php",
+			data: {"action":"getPostIts","idBoard":idBoard,"numColonne":numeroCol},
+			success: function(oRep){
+			console.log(oRep);
+			var i;
+
+			for(i=0;i<oRep.postIts.length;i++){
+				var div = $("<div class='post'><p>"+oRep.postIts[i].label+"</p><p>Avancement : <span>" + oRep.postIts[i].avancement+"</span></p></div>").data("id",oRep.postIts[i].id);
+				$(div).data("colonne",oRep.postIts[i].numColonne);
+				$(div).click(function(){
+					console.log("Modification Post");
+					afficherPopupModification($(this),idBoard,numeroCol);
+				});
+
+				$("#col"+numeroCol).append(div);
+			}
+
+			},
+			dataType: "json"
+			});
+	}
+
+
+	function vueBoard(ref){
+		var id = ref.data("id");
+
+		console.log(id);
+		$(".corps").html($("<div class='top'>" + $(ref).html() +"</div>").click(function(){
+			changerLabel(id);
+		}));
+
+		$(".corps").append("<div id='colonne'></div>");
+
+		$("#colonne").append($("<div id='col1' class='listeBoard'></div>"));
+		$("#colonne").append($("<div id='col2' class='listeBoard'></div>"));
+		$("#colonne").append($("<div id='col3' class='listeBoard'></div>"));
+		remplirColonne(id);
+		insererPost(id,1); // on remplit la colonne 1 avec ses posts
+		insererPost(id,2);
+		insererPost(id,3);
+		$(".corps").append($("<div id='back'>Revenir aux boards</div>").click(function(){
+			listerBoard();
+		}))
+
+	}
+
+
+	function listerBoard(){
+
+		$.ajax({
+				type: "GET",
+				url: "data.php",
+				data: {"action":"getBoards"},
+				success: function(oRep){
+				console.log(oRep);
+				var i;
+
+				$(".corps").empty();
+
+				for (i=0;i<oRep.boards.length;i++){
+					var init = $("<div class='board'>" +oRep.boards[i].label + "</div>").click(function(){
+						vueBoard($(this));
+					}).data("id",oRep.boards[i].id);
+
+					$(".corps").append(init);
+				}
+				boardInit();
+				
+			},
+			dataType: "json"
+			});
+	}
+
+
+	function creerUnBoard(){
+		$("#create").remove();
+		$(".corps").append("<div id='create'></div>");
+
+		$("#create").html("Label : <input id='label' type='text' class='inscription'>");
+		var pseudo = $("#main").data("pseudo");
+		var initiales = $("#main").data("initiales");
+
+		console.log(pseudo + " + " + initiales);
+		mkBanniere(pseudo,initiales);
+		
+
+			var popup = $("#create").dialog({
+				autoOpen: true,
+				dialogClass: 'dialogstyleperso',
+				title:"Ajouter Board",
+				close: function(){ $('#create').remove();},
+				buttons: [
+			            {
+			                text: "Creer le board",
+			                "class": 'ui-state-information',
+			                click: function () {
+		                   
+		                  	 var label = $("#label").val();
+		                 
+		                  	 $.ajax({
+									type: "GET",
+									url: "data.php",
+									data: {"action":"setBoard","label":label},
+									success: function(oRep){
+									console.log(oRep);
+									listerBoard();
+								},
+								dataType: "json"
+								});
+		                  	 $(this).dialog("close");
+		                  	 
+			                }
+
+			            }
+
+			        ]
+			});
+
+
+
+
+	}
+	
+	function boardInit(){
+		var init = $("<div class='init'>Create a new board</div>").click(function(){
+			creerUnBoard();
+		});
+
+		$(".corps").append(init);
+	}
+
+	function createNotif(){
+		$.ajax({
+				type: "GET",
+				url: "data.php",
+				data: {"action":"setNotification","description":""},
+				success: function(oRep){
+				console.log(oRep);
+				
+			},
+			dataType: "json"
+			});
+	}
+
+	function createUser(login,passe,initiales){
+			console.log("a");
+
+
+		console.log(login + " + " + passe + " + " + initiales);
+
+		$.ajax({
+				type: "GET",
+				url: "data.php",
+				data: {"action":"setUser","login":login,"passe":passe,"initiales":initiales},
+				success: function(oRep){
+				console.log(oRep);
+				console.log("User cree");
+				createNotif();	
+				listerNotif();			
+			},
+			dataType: "json"
+			});
+	}
+
+
+	function mkBanniere(pseudo,initiales){
+		$(".titre").html("<div id='banniere'></div>");
+		$("#banniere").append($("<img src='./ressources/addConv.png' class='image' id='cross' >").click(function(){
+						// ajouter user
+			$(".popup").remove(); // on remove s'il y avait une précédente
+			$(".corps").append("<div class='popup'></div>");
+			$(".popup").append("Login : <input id='log' type='text' class='inscription'>");
+			$(".popup").append("Passe : <input id='pas' type='password' class='inscription'>");
+			$(".popup").append("initiales : <input id='ini' type='text' class='inscription'>");
+
+			var popup = $(".popup").dialog({
+				autoOpen: true,
+				dialogClass: 'dialogstyleperso',
+				title:"Ajouter Utilisateur",
+				close: function(){ $('.popup').remove();},
+				buttons: [
+			            {
+			                text: "Valider",
+			                "class": 'ui-state-information',
+			                click: function () {
+		                   
+		                    console.log($(this));
+		                    var login = $("#log").val();
+		                    var passe = $("#pas").val();
+		                    var initiales = $("#ini").val();
+		                    console.log(login +"."+passe+"."+initiales);
+		                  	 createUser(login,passe,initiales);
+		                  	 $(this).dialog("close");
+
+			                }
+
+			            }
+
+			        ]
+				});
+
+			}));
+
+		$("#banniere").append("<span class='initiales'>"+ initiales+"</span><span class='pseudo'>"+pseudo+"</span>");
+
+		$("#banniere").append($("<img src='./ressources/hide.png' class='image'  >").click(function(){
+			// notification	
+			console.log("clic");
+			console.log($(this).attr("src"))
+
+			// Ici si le logo est en caché alors on liste les notifications 
+			// sinon on remet dans l'état initial
+
+			if ($(this).attr("src") == "./ressources/hide.png" ){
+				$(this).attr("src",'./ressources/show.png');
+				$(".corps").append("<div id='notification'></div>");
+				listerNotif();
+
+			}
+			else{
+				$(this).attr("src","./ressources/hide.png"); // on change le logo
+				$("#notification").remove();
+				mkBanniere(pseudo,initiales);
+			}
+
+		}));
+
+	}
+
+
+	function deleteNotif(ref){
+		var id = ref.parent().attr("id");
+		console.log(id);
+		console.log(ref.length);
+		ref.parent().remove();
+
+		$.ajax({
+				type: "GET",
+				url: "data.php",
+				data: {"action":"delNotification","idNotification":id},
+				success: function(oRep){
+				console.log(oRep);
+
+				console.log($("#notification div").length);
+
+				if ($("#notification div").length == 0){ // si c'est la derniere notif
+					var pseudo = $("#main").data("pseudo");
+					var initiales = $("#main").data("initiales");
+
+					console.log(pseudo + " + " + initiales);
+
+					mkBanniere(pseudo,initiales);
+				}
+
+
+				
+			},
+			dataType: "json"
+			});
+	}
+
+
+	function listerNotif(){
+		$.ajax({
+				type: "GET",
+				url: "data.php",
+				data: {"action":"getNotifications"},
+				success: function(oRep){
+				console.log(oRep);
+				var i;
+				for (i=0;i<oRep.notifications.length;i++){
+					var text = $("<div id='"+oRep.notifications[i].id + "' class='notif' >"
+						+ oRep.notifications[i].description+"</div>");
+					console.log(text);
+					
+
+					var cross = $("<img class='supprimer' src='./ressources/close.png'>").click(function(){
+						console.log("supprimer une notification");
+						deleteNotif($(this));
+					});
+
+					$(text).append(cross);
+
+					$("#notification").append(text);
+
+				}
+				
+			},
+			dataType: "json"
+			});
+	}
+
+
+	function accueil(pseudo,initiales) {
+	var bloc = $('<div class="bloc" id="main" ><div class="titre"></div><div class="corps">  </div></div>');
+	$(bloc).data("pseudo",pseudo);
+	$(bloc).data("initiales",initiales);
+		$("body").append(bloc);
+		mkBanniere(pseudo,initiales);
+	}
+
+
+
+	
+	function mkForm(){
+		$("#connexion").html("Login : <input type='text' class='ligne'>");
+		$("#connexion").append("Passe : <input type='password' class='ligne'>");
+		$("#connexion").append("<input type='submit' class='ligne' value='Se connecter' >");
+		$("#connexion").append($("<input type='submit'>").click(function(){
+
+			$.ajax({
+				type: "GET",
+				url: "data.php",
+				data: {"action":"logout"},
+				success: function(oRep){
+				console.log(oRep);
+				
+			},
+			dataType: "json"
+			});
+		}));
+
+	}
+
+
+
+	$(document).ready(function(){
+		mkForm();
+	});
+</script>
+
+
+
+
+<body>
+	<div id="connexion" class="container jumbotron">
+	</div>
+
+</body>
+</html>
